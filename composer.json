@@ -1,0 +1,20 @@
+{
+    "name": "iamamirsalehi/php-queue-system",
+    "autoload": {
+        "psr-4": {
+            "Iamamirsalehi\\PhpQueueSystem\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Amir Salehi",
+            "email": "iamamirsalehi@gmail.com"
+        }
+    ],
+    "require": {
+        "nesbot/carbon": "^2.59"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
