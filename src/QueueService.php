@@ -4,6 +4,7 @@ namespace Iamamirsalehi\PhpQueueSystem;
 
 use Carbon\Carbon;
 use Iamamirsalehi\PhpQueueSystem\Abstracts\ActionInterface;
+
 //TODO: Cache the order in a file
 
 class QueueService
@@ -22,9 +23,9 @@ class QueueService
     public function add(ActionInterface $action, string $name = 'default', Carbon $scheduleFor = null): self
     {
         $this->queues[] = [
-            'action' => $action,
+            'action' => get_class($action),
             'name' => $name,
-            'scheduleFor' => $scheduleFor,
+            'scheduled_for' => $scheduleFor,
         ];
 
         return $this;
@@ -36,7 +37,7 @@ class QueueService
             $this->queues[] = [
                 'action' => $queue['action'],
                 'name' => $queue['name'],
-                'scheduleFor' => $queue['scheduleFor'],
+                'scheduled_for' => $queue['scheduled_for'],
             ];;
         }
     }

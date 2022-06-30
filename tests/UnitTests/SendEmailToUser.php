@@ -1,6 +1,6 @@
 <?php
 
-namespace UnitTests;
+namespace Tests\UnitTests;
 
 use Iamamirsalehi\PhpQueueSystem\Abstracts\ActionInterface;
 

@@ -2,7 +2,8 @@
     "name": "iamamirsalehi/php-queue-system",
     "autoload": {
         "psr-4": {
-            "Iamamirsalehi\\PhpQueueSystem\\": "src/"
+            "Iamamirsalehi\\PhpQueueSystem\\": "src/",
+            "Tests\\": "tests/"
         }
     },
     "authors": [
