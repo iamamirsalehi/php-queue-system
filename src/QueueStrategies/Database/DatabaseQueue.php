@@ -2,7 +2,7 @@
 
 namespace Iamamirsalehi\PhpQueueSystem\QueueStrategies\Database;
 
-use Carbon\Carbon;
+use Iamamirsalehi\PhpQueueSystem\Command\QueueCommand;
 use Iamamirsalehi\PhpQueueSystem\QueueMethodsInterface;
 
 class DatabaseQueue implements QueueMethodsInterface
@@ -18,16 +18,18 @@ class DatabaseQueue implements QueueMethodsInterface
         $this->tableName = $tableName;
     }
 
-    public function fire(array $queues)
+    public function fire(array $queues): bool
     {
-        // insert into table
-        $stmt = $this->pdo->prepare("INSERT INTO $this->tableName (action, name, scheduled_for) VALUES(?, ?, ?)");
+        $stmt = $this->pdo->prepare("INSERT INTO $this->tableName (action, name, parameters, scheduled_for) VALUES(?, ?, ?, ?)");
+
         foreach ($queues as $queue) {
             $stmt->execute([
                 $queue['action'],
                 $queue['name'],
-                Carbon::parse($queue['scheduled_for'])->format('Y-m-d H:i:s'),
+                json_encode($queue['parameters']),
+                $queue['scheduled_for'],
             ]);
         }
+        return true;
     }
 }
